@@ -20,6 +20,15 @@ public class CircuitBreaker {
         this.threshold = threshold;
         this.timeoutInMillis = timeoutInMillis;
     }
+    
+    public void reset() {
+    	this.state = CircuitBreakerState.CLOSED;
+    	consecutiveFailures=0;
+    }
+    
+    public void close() {
+    	scheduler.shutdown();
+    }
 
     public void execute(Operation operation) {
         switch (state) {

@@ -20,7 +20,8 @@ public class Driver {
                 System.out.println("Circuit breaker is open, operation skipped");
             }
         }
-        Thread.sleep(2000);
+        
+        
         for (int i = 0; i < 5; i++) {
             try {
                 circuitBreaker.execute(new RestEndPointOperation());
@@ -28,6 +29,7 @@ public class Driver {
                 System.out.println("Circuit breaker is open, operation skipped");
             }
         }
+        circuitBreaker.close();
 	}
 
 }
